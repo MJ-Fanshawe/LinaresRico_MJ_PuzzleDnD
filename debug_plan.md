@@ -11,7 +11,7 @@ This was the way I solved them! :)
 ## B) Reseting Puzzle Pieces:
 
 1) Assigned an id to each img in the div with class "puzzle-pieces".
-2) Reseted drop-zone.
+2) Reseted Drop Zones.
 3) Called each piece by their id.
 4) For each item in the pzlPieces collection, added a child element to the puzzleBoard element.
  
