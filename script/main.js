@@ -22,7 +22,7 @@ function changeBGImage() {
 	pBoard = document.querySelector(".puzzle-pieces");
 
 	pBoard.innerHTML = "";
-	
+
 		puzzlePieces[0].src = `images/topLeft${this.id}.jpg`;
 		puzzlePieces[1].src = `images/topRight${this.id}.jpg`;
 		puzzlePieces[2].src = `images/bottomLeft${this.id}.jpg`;
@@ -31,20 +31,37 @@ function changeBGImage() {
 
 }
 
-function handleStartDrag() { 
-	// store the element I am currently dragging in that global draggedPiece variable
-	draggedPiece = this;
+function handleDrag(e) {
+	console.log('started draggin me');
+	// reference to the element
+	e.dataTransfer.setData(draggedPiece, this.id);
 }
 
-function handleDragOver(e) { e.preventDefault(); }
+function handleStartDrag(e) {
+	console.log('started draggin me');
+	e.dataTransfer.setData(draggedPiece, this.id);
+}
+
+function handleDragOver(e) {
+	// block the default behaviour 
+	e.preventDefault();
+}
 
 function handleDrop(e) {
 	// block the default behaviour 
 	e.preventDefault();
-	// and then do whatever you want.
-	console.log('dropped on me!');
-	e.target.appendChild(draggedPiece);
+	console.log('dropped on me! :)');
+
+	if (e.target.childElementCount == 0 && !(e.target instanceof HTMLImageElement)){
+		let droppedElId = e.dataTransfer.getData(draggedPiece);
+	
+		// save the dragged piece by its ID, and put it inside the current drop zone
+		// put it inside the current drop zone
+
+		this.appendChild(document.querySelector(`#${droppedElId}`));
+	} 
 }
+
 
 
 // how things react when you use the targets
@@ -60,6 +77,3 @@ function blockDefaultBehaviour(e) { // e is shorthand for event -> in this case 
 	// don't let the default behaviour of certain elements happen - block it
 	e.preventDefault();
 }
-
-// temp handling
-tempLink.addEventListener('click', blockDefaultBehaviour);

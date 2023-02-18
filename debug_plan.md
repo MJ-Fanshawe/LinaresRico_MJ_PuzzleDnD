@@ -5,6 +5,8 @@ This was the way I solved them! :)
 
 ## A) One Piece Per Spot:
 
+1) Checked the ChildElement of the Puzzle Board; 
+2) Created a condition where: If the targets is 0 and not img, allow dropping.
 
 ## B) Reseting Puzzle Pieces:
 
